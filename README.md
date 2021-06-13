@@ -94,7 +94,30 @@
   print("매수 호가의 총 잔량: ", total_bid_size)
   ```
 
+### 로그인 및 자동화 준비
 
+* 업비트 홈페이지 하단 오른쪽에 Open API 들어가서 신청을 해야 함
+  * 인증 4단계까지 마쳐야 함
+* Open API 사용하기 클릭
+* 입금하기, 출금하기 는 보안상 위험할 수 있으니 체크하지 않음
+* '접속관리'의 아이피주소를 확인하여 '특정 IP에서만 실행' 칸에 적어주고 키 발급을 클릭
+* Access key, Secret key 발급 완료(메모장에 붙혀넣어 놓기)
+
+### 잔고 확인
+
+```python
+import pyupbit
+
+f = open("key.txt")
+lines = f.readline()
+access = lines[0].strip()       # access key
+secret = lines[1].strip()       # secret key 를 파이썬 문자열로 가져옴
+f.close()
+
+upbit = pyupbit.Upbit(access, secret)   	# class instance
+balance = upbit.get_balance("KRW-BTC")      # 원화 잔고조회 ex) "KRW-BTC"
+print(balance)
+```
 
 ### 사이트
 
